@@ -171,6 +171,7 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
                         SaveToFile(
                             !split ? fileName : $"{exportName}\\{$"note_{createdDate.ToString(timeStampFormat)}"}", 
                             $"** Unsupported note type (Mind-map or Sound note) (Created at: {createdDate:dd/MM/yyyy HH:mm})**",
+                            null,
                             createdDate
                             );
                         ExecuteScroll(notesList, element);
