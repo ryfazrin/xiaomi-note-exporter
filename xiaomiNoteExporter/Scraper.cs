@@ -187,7 +187,8 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
                     SaveToFile(
                         !split ? fileName : $"{exportName}\\{$"note_{createdDate.ToString(timeStampFormat)}"}", 
                         value, 
-                        title
+                        title,
+                        createdDate
                         );
 
                     var embeddedImages = noteContainer.FindElements(By.XPath(@".//div[contains(@class, 'image-view')]/img"));
@@ -240,7 +241,7 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
         }
     }
 
-    private static void SaveToFile(string fileName, string content, string? title = null)
+    private static void SaveToFile(string fileName, string content, string? title = null, DateTime createdDate)
     {
         using StreamWriter sw = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + fileName);
 
