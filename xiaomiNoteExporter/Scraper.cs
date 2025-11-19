@@ -171,7 +171,6 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
                         SaveToFile(
                             !split ? fileName : $"{exportName}\\{$"note_{createdDate.ToString(timeStampFormat)}"}", 
                             $"** Unsupported note type (Mind-map or Sound note) (Created at: {createdDate:dd/MM/yyyy HH:mm})**",
-                            null,
                             createdDate
                             );
                         ExecuteScroll(notesList, element);
@@ -189,8 +188,8 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
                     SaveToFile(
                         !split ? fileName : $"{exportName}\\{$"note_{createdDate.ToString(timeStampFormat)}"}", 
                         value, 
-                        title,
-                        createdDate
+                        createdDate,
+                        title
                         );
 
                     var embeddedImages = noteContainer.FindElements(By.XPath(@".//div[contains(@class, 'image-view')]/img"));
@@ -243,7 +242,7 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
         }
     }
 
-    private static void SaveToFile(string fileName, string content, string? title = null, DateTime createdDate)
+    private static void SaveToFile(string fileName, string content, DateTime createdDate, string? title = null)
     {
         using StreamWriter sw = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + fileName);
 
