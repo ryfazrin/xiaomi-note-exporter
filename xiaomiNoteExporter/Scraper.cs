@@ -252,6 +252,8 @@ public partial class Scraper(ChromeDriver driver, Action shutdownHandler)
         }
 
         sw.WriteLine(content);
+        
+        sw.WriteLine(createdDate.ToString("dd/MM/yyyy HH:mm"));
     }
 
     private static void SaveImage(string path, string? src, string domain, IEnumerable<OpenQA.Selenium.Cookie> cookies)
